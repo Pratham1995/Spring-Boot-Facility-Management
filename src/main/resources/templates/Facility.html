@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <style>
+    * {box-sizing: border-box}
+
+    /* Add padding to containers */
+    .container {
+    padding: 16px;
+    }
+
+    /* Full-width input fields */
+    input[type=text], input[type=password] {
+    width:200px;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+    }
+    select {
+    width: 150px;
+    margin: 10px;
+}
+
+    input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+    }
+
+    /* Overwrite default styles of hr */
+    hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+    }
+    .error-message{
+    color:red;
+    }
+    /* Set a style for the submit/register button */
+    .registerbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+    }
+
+    .registerbtn:hover {
+    opacity:1;
+    }
+
+    /* Add a blue text color to links */
+    a {
+    color: dodgerblue;
+    }
+
+    /* Set a grey background color and center the text of the "sign in" section */
+    .signin {
+    background-color: #f1f1f1;
+    text-align: center;
+    }
+</style>
+    <title>Facility Management</title>
+</head>
+<body>
+
+<br>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+
+            <h1> FACILITY MANAGER HOME<h1>
+                <form action = "#" th:action="@{/Facility}" th:object="${Facility}" method="POST">
+                    <div class="form-group"
+                     th:classappend="${#fields.hasErrors('FacilityName')}? 'has-error':''">
+                    <p class="error-message"
+                     th:each="error: ${#fields.errors('FacilityName')}"
+                       th:text="${error}">Facility Name Error</p>
+                    <label for="FacilityName" class="control-label">Facility name</label> <input
+                        id="FacilityName" class="form-control" th:field="*{FacilityName}" type="text" />
+
+                </div>
+                <div class="form-group">
+                    <label for="FacilityType" style="width:50%">Facility Type:</label>
+                    <select id="FacilityType" name="FacilityType">
+                    <option value="Indoor">Indoor</option>
+                    <option value="Outdoor">Outdoor</option>
+                    <option value="Both">Both</option>
+                </select>
+
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">ADD Facility</button>
+                </div>
+
+            </div>
+                </form>
+    </div>
+</div>
+
+<script type="text/javascript"
+        th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript"
+        th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+</body>
+</html>
